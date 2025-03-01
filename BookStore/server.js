@@ -49,3 +49,17 @@ app.get("/", async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
+app.get("/search", (req, res) => {
+    let query = req.query.q;
+    
+    let sql = `SELECT * FROM book_name WHERE title LIKE '%${query}%'`;
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            res.status(500).send("Database Error");
+            return;
+        }
+        res.json({ books: results });
+    });
+});
