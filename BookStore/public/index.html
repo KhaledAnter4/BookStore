@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Bookstore</h1>
+    </header>
+
+    <div id="books">
+        <h2>Available Books</h2>
+        <div class="book">
+            <h3>The Secret</h3>
+            <img src="OIP.jpeg" width="150" height="200" alt="The Secret">
+            <p>The Secret was released as a film in March 2006, and later the same year as a book.</p>
+            <button onclick="buyBook('The Secret')">Buy</button>
+        </div>
+        <div class="book">
+            <h3>Harry Potter</h3>
+            <img src="OIP (1).jpeg" width="150" height="200" alt="Harry Potter">
+            <p>Harry Potter and the Half-Blood Prince" is the sixth book in the Harry Potter series.</p>
+            <button onclick="buyBook('Harry Potter')">Buy</button>
+        </div>
+    </div>
+
+    <div id="about">
+        <h2>About Us</h2>
+        <p>We are a bookstore offering a variety of books at great prices.</p>
+    </div>
+
+    <div id="contact">
+        <h2>Contact</h2>
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Name" required><br><br>
+            <input type="email" id="email" placeholder="Email" required><br><br>
+            <textarea id="message" placeholder="Your message" required></textarea><br><br>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <div id="upload">
+        <h2>Upload a Book</h2>
+        <input type="file" id="fileInput">
+        <button onclick="uploadFile()">Upload</button>
+        <p id="message"></p>
+    </div>
+</body>
+</html>

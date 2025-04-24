@@ -1,6 +1,3 @@
-//test1 24-4-25
-
-
 import express from "express";
 import multer from "multer";
 import cors from "cors";
@@ -21,20 +18,14 @@ app.use(express.urlencoded({ extended: true }));
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, "public", "uploads")); 
+        cb(null, "/public/uploads"); 
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
-// Validation
-
-const upload = multer({ 
-    storage, 
-    fileFilter: (req, file, cb) => checkFileType(file, cb) 
-});
-
+const upload = multer({ storage });
 
 app.post("/public/uploads", upload.single("file"), (req, res) => {  
     if (!req.file) {
