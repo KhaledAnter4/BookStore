@@ -34,7 +34,7 @@ const fileFilter = (req, file, cb) => {
   };
 const uploadLimit = 5 * 1024 * 1024;   // limit for uploaded books - prevent ddos attacks
 
-const upload = multer({ storage });
+const upload = multer({ storage, fileFilter, limits: { fileSize: uploadLimit } });
 
 app.post("/public/uploads", upload.single("file"), (req, res) => {
     if (!req.file) {
