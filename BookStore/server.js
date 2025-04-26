@@ -16,12 +16,23 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/public/uploads", express.static("uploads")); 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "/public/uploads");
+        /* cb(null, "/public/uploads");    dynamic path - lead to path traversal */   
+        cb(null, path.join(__dirname, "public", "uploads"))
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname));
     }
 });
+
+const fileFilter = (req, file, cb) => {
+    const allowedTypes = ["image/jpeg", "image/png", "application/pdf"];
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("File type not allowed"), false);
+    }
+  };
+const uploadLimit = 5 * 1024 * 1024;   
 
 const upload = multer({ storage });
 
