@@ -32,7 +32,7 @@ const fileFilter = (req, file, cb) => {
       cb(new Error("File type not allowed"), false);
     }
   };
-const uploadLimit = 5 * 1024 * 1024;   
+const uploadLimit = 5 * 1024 * 1024;   // lo=limit for uploaded books - prevent ddos attacks
 
 const upload = multer({ storage });
 
